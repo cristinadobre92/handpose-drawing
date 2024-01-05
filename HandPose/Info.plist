@@ -61,5 +61,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For adding the image to the Gallery</string>
 </dict>
 </plist>

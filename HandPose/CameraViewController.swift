@@ -196,6 +196,22 @@ class CameraViewController: UIViewController {
         drawPath.removeAllPoints()
         drawOverlay.path = drawPath.cgPath
     }
+
+    @IBAction func saveImageButton(_ sender: UIButton) {
+        guard let bounds = view.window?.screen.bounds else {
+            return
+        }
+        let saveImage = image(with: drawPath, size: CGSize(width: bounds.width, height: bounds.height))
+        UIImageWriteToSavedPhotosAlbum(saveImage, nil, nil, nil)
+    }
+
+    func image(with path: UIBezierPath, size: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { _ in
+            UIColor.blue.setStroke()
+            path.lineWidth = 2
+            path.stroke()
+        }
+    }
 }
 
 extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -241,4 +257,3 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 }
-
